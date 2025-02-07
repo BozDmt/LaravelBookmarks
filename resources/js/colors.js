@@ -1,6 +1,6 @@
 const colors=
      [
-    "AliceBlue", "AntiqueWhite", "Aqua",
+    "AliceBlue", "AntiqueWhite", "Aqua","Black",
     "BlanchedAlmond", "Blue", "BlueViolet",
     "Chocolate", "Coral", "CornflowerBlue",
     "DarkCyan", "DarkGoldenrod", "DarkGray",

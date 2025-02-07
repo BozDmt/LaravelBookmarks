@@ -1,6 +1,6 @@
 [
   {
     "type": "sqlite",
-    "path": "/home/mitch/phpProjects/TestCards/database/database.sqlite"
+    "path": "/home/mitch/phpProjects/BookmarkCards/database/database.sqlite"
   }
 ]

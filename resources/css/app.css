@@ -1,20 +1,31 @@
-
-@media only screen and(max-width:700px){
-    #app{
-        background-color: red;
-    }
-}@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .card{
-    min-width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:.3rem;
+    max-width: 30vw;
+    border-radius: .4em;
+    transition: border-color 0.15s ease-in-out;
+    min-width: 30%;
     border: 2px red;
     box-sizing: border-box;
     box-shadow: inset 2px green;
     min-height: 25vh;
     margin:1rem;
     position:relative;
+}
+
+.edit-bkmk{
+    position: absolute;
+    bottom: 0;
+}
+
+.card:hover{
+    border-color: #e5e7eb;
 }
 
 .d-flex{
@@ -53,11 +64,6 @@
     text-decoration: underline;
 }
 
-.edit-bkmk{
-    position: absolute;
-    bottom:0;
-}
-
 .groupdef{
     top:0;
     text-align: center;
@@ -84,21 +90,3 @@ form input,select{
 form label {
     margin:.2em;
 }
-
-.cardcontainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:.3rem;
-    flex:1 1 30%;
-    max-width: 20vw;
-    border-radius: .4em;
-    transition: border-color 0.15s ease-in-out;
-
-}
-
-.cardcontainer:hover{
-    border-color: #e5e7eb;
-}
-
-

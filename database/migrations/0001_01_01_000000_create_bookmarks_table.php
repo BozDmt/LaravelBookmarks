@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->string('color')->default(fake()->safeColorName());
+            $table->string('color')->default(fake()->hexColor());
             $table->string('title')->nullable()->default('');
             $table->string('link')->default(fake()->url())->nullable();
             $table->string('bookmark_group')->nullable()->constrained()->onDelete('cascade');

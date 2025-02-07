@@ -1,10 +1,10 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import Bookmark from "@/Components/Bookmark.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import InputError from "@/Components/InputError.vue";
 import { route } from "ziggy-js";
-import colors from "../colors";
+import invertColor from "../invertColor.js";
 
 const props = defineProps(["bookmark", "groups"]);
 const form = useForm({
@@ -15,16 +15,12 @@ const form = useForm({
   bookmark_group: props.bookmark.group,
 });
 
+const refLink = ref("");
+
 const choice = ref(props.bookmark.bookmark_group);
-const cardColor = ref(props.bookmark.color);
-const newLink = ref(null);
-const newTitle = ref(null);
 form.bookmark_group = choice === "None" ? null : choice;
-form.color = cardColor;
-form.link = newLink;
-form.title = newTitle;
+
 const sendForm = () => {
-  console.log(newLink);
   form.patch(route("bookmark.update", form.id), {
     onSuccess: () => {
       form.reset();
@@ -34,21 +30,27 @@ const sendForm = () => {
 </script>
 <template>
   <div class="flex justify-center items-center" id="edit-bkmk">
-    <Bookmark :bookmark="bookmark" :editor="true" />
+    <Bookmark
+      :bookmark="bookmark"
+      :editMode="true"
+      :style="{ backgroundColor: form.color, color: invertColor(form.color) }"
+      :link="refLink"
+    />
   </div>
   <div class="form-container">
     <form @submit.prevent="sendForm">
       <input type="hidden" v-model="form.id" />
       <label for="picker">Pick a color</label>
-      <select v-model="cardColor" name="picker">
-        <option v-for="color in colors" :key="color" :value="color">
-          {{ color }}
-        </option>
-      </select>
+      <input type="color" name="picker" v-model="form.color" />
       <label for="link">Enter a link: </label>
-      <input type="text" name="link" v-model="newLink" />
+      <input
+        type="text"
+        name="link"
+        v-model="form.link"
+        @input="(event) => (refLink = event.target.value)"
+      />
       <label for="link">Enter a title: </label>
-      <input type="text" name="title" v-model="newTitle" />
+      <input type="text" name="title" v-model="form.title" />
       <label for="group">Group:</label>
       <select v-model="choice" name="group">
         <option v-for="group in groups" :key="group" :value="group">
